@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:india_today/screens/talk_to_astro/astro_screen.dart';
+import 'package:india_today/utils/router.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  AppRouter router = AppRouter();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.yellow,
+        primarySwatch: Colors.orange,
       ),
-      home: const AstroScreen(),
+      onGenerateRoute: router.generateRoute,
     );
   }
 }

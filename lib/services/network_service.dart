@@ -1,24 +1,23 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:india_today/model/astro_response.dart';
 import 'package:india_today/services/api_service.dart';
 import 'package:india_today/utils/url.dart';
 
 class NetworkService {
-  static Future fetchAllAgents(Map<String, dynamic> request) async {
-    final Response? response = await ApiService.makeRequest(
-        Url.FETCH_ALL_AGENTS, RequestType.post, request, null);
+  static Future<Astro> fetchAllAgents() async {
+    final response = await ApiService.makeRequest(
+        Url.FETCH_ALL_AGENTS, RequestType.get, null, null);
 
-    String? jsonString = response?.body;
-    if (jsonString == null) return null;
+    Map<String, dynamic> jsonMap = ApiService.handleResponse(response?.body);
 
-    Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-    return jsonMap;
+    return Astro.fromJson(jsonMap);
   }
 
   static Future fetchAllLocations(Map<String, dynamic> request) async {
     final Response? response = await ApiService.makeRequest(
-        Url.FETCH_ALL_LOCATIONS, RequestType.post, request, null);
+        Url.FETCH_ALL_LOCATIONS, RequestType.get, request, null);
 
     String? jsonString = response?.body;
     if (jsonString == null) return null;

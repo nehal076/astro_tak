@@ -24,7 +24,12 @@ class ApiService {
             Uri.parse('$url?$queryString'),
             headers: headers,
           );
-          receiveResponse("GET", url, headers, parameter, response);
+          printLog("GET", url, headers, parameter, response);
+          if (response.statusCode == 200) {
+            return response;
+          } else {
+            throw Exception(response.statusCode);
+          }
         } catch (e) {
           log("$url : $e");
         }
@@ -60,6 +65,16 @@ class ApiService {
     }
   }
 
+  static Map<String, dynamic> handleResponse(String? jsonString) {
+    Map<String, dynamic> errorCodeNotFound = {"success": false};
+    Map<String, dynamic> jsonMap;
+    if (jsonString == null) {
+      return errorCodeNotFound;
+    }
+    jsonMap = json.decode(jsonString);
+    return jsonMap;
+  }
+
   static printLog(type, url, headers, parameter, response) {
     if (showLog) {
       if (showColorLog) {
@@ -70,7 +85,8 @@ class ApiService {
     }
   }
 
-  static receiveResponse(type, url, headers, parameter, response) {
+  static Response receiveResponse(
+      type, url, headers, parameter, Response response) {
     printLog(type, url, headers, parameter, response);
     if (response.statusCode == 200) {
       return response;
