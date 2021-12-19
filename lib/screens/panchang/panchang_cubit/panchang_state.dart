@@ -7,6 +7,10 @@ class PanchangInitial extends PanchangState {}
 
 class AstroLoading extends PanchangState {}
 
-class PanchangLoaded extends PanchangState {}
+class PanchangLoaded extends PanchangState {
+  final Panchang panchang;
+
+  PanchangLoaded(this.panchang);
+}
 
 class PanchangError extends PanchangState {}

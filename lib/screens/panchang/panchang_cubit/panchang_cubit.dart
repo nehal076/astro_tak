@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:india_today/model/panchang_response.dart';
 import 'package:india_today/repo/repository.dart';
 import 'package:meta/meta.dart';
 
@@ -19,7 +20,7 @@ class PanchangCubit extends Cubit<PanchangState> {
     };
     repository.getAllPanchangs(request).then((response) {
       if (response.success == true) {
-        emit(PanchangLoaded());
+        emit(PanchangLoaded(response));
       } else {
         emit(PanchangError());
       }

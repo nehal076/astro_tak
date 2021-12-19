@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 import 'package:india_today/model/astro_response.dart';
+import 'package:india_today/model/panchang_response.dart';
 import 'package:india_today/services/api_service.dart';
 import 'package:india_today/utils/url.dart';
 
@@ -29,14 +30,13 @@ class NetworkService {
     return jsonMap;
   }
 
-  static Future fetchAllPanchangs(Map<String, dynamic> request) async {
+  static Future<Panchang> fetchAllPanchangs(
+      Map<String, dynamic> request) async {
     final Response? response = await ApiService.makeRequest(
         Url.FETCH_ALL_PANCHANG, RequestType.post, request, headers);
 
-    String? jsonString = response?.body;
-    if (jsonString == null) return null;
+    Map<String, dynamic> jsonMap = ApiService.handleResponse(response?.body);
 
-    Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-    return jsonMap;
+    return Panchang.fromJson(jsonMap);
   }
 }

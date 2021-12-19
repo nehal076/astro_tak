@@ -42,7 +42,13 @@ class ApiService {
             headers: headers,
             body: jsonEncode(parameter),
           );
-          receiveResponse("POST", url, headers, parameter, response);
+
+          printLog("POST", url, headers, parameter, response);
+          if (response.statusCode == 200) {
+            return response;
+          } else {
+            throw Exception(response.statusCode);
+          }
         } catch (e) {
           log("$url : $e");
         }
@@ -55,7 +61,13 @@ class ApiService {
             headers: headers,
             body: jsonEncode(parameter),
           );
-          receiveResponse("PUT", url, headers, parameter, response);
+
+          printLog("PUT", url, headers, parameter, response);
+          if (response.statusCode == 200) {
+            return response;
+          } else {
+            throw Exception(response.statusCode);
+          }
         } catch (e) {
           log("$url : $e");
         }
@@ -82,16 +94,6 @@ class ApiService {
       } else {
         log("[$type] $url \nHeaders: $headers \nRequest: ${jsonEncode(parameter).toString()}\nResponse: ${response.body}");
       }
-    }
-  }
-
-  static Response receiveResponse(
-      type, url, headers, parameter, Response response) {
-    printLog(type, url, headers, parameter, response);
-    if (response.statusCode == 200) {
-      return response;
-    } else {
-      throw Exception(response.statusCode);
     }
   }
 
