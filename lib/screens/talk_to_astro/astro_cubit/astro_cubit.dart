@@ -12,16 +12,11 @@ class AstroCubit extends Cubit<AstroState> {
   void getAstro() {
     emit(AstroLoading());
     repository.getAllAgents().then((response) {
-      if (response == null) {
+      if (response.success == true) {
+        emit(AstroLoaded(response));
+      } else {
         emit(AstroError());
-        return;
       }
-      emit(AstroLoaded(response));
-      // if (response.success == true) {
-      //   emit(AstroLoaded(response));
-      // } else {
-      //   emit(AstroError());
-      // }
     });
   }
 }

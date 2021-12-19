@@ -6,6 +6,9 @@ import 'package:india_today/services/api_service.dart';
 import 'package:india_today/utils/url.dart';
 
 class NetworkService {
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+  };
   static Future<Astro> fetchAllAgents() async {
     final response = await ApiService.makeRequest(
         Url.FETCH_ALL_AGENTS, RequestType.get, null, null);
@@ -28,7 +31,7 @@ class NetworkService {
 
   static Future fetchAllPanchangs(Map<String, dynamic> request) async {
     final Response? response = await ApiService.makeRequest(
-        Url.FETCH_ALL_PANCHANG, RequestType.post, request, null);
+        Url.FETCH_ALL_PANCHANG, RequestType.post, request, headers);
 
     String? jsonString = response?.body;
     if (jsonString == null) return null;

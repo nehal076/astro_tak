@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:india_today/widgets/app_bar.dart';
+import 'package:india_today/widgets/bottom_navigation.dart';
 
 class MyScaffold extends StatelessWidget {
   final Widget child;
@@ -10,6 +11,9 @@ class MyScaffold extends StatelessWidget {
     return Scaffold(
       appBar: const MyAppBar(),
       body: child,
+      bottomNavigationBar: BottomNavigator(
+        itemSelected: (item) {},
+      ),
     );
   }
 }
