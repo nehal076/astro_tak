@@ -53,11 +53,11 @@ class Data {
     this.moonset,
     this.vedicSunrise,
     this.vedicSunset,
-    this.tithi,
-    this.nakshatra,
-    this.yog,
-    this.karan,
-    this.hinduMaah,
+    required this.tithi,
+    required this.nakshatra,
+    required this.yog,
+    required this.karan,
+    required this.hinduMaah,
     this.paksha,
     this.ritu,
     this.sunSign,
@@ -85,11 +85,11 @@ class Data {
   String? moonset;
   String? vedicSunrise;
   String? vedicSunset;
-  Tithi? tithi;
-  Nakshatra? nakshatra;
-  Yog? yog;
-  Karan? karan;
-  HinduMaah? hinduMaah;
+  Tithi tithi;
+  Nakshatra nakshatra;
+  Yog yog;
+  Karan karan;
+  HinduMaah hinduMaah;
   String? paksha;
   String? ritu;
   String? sunSign;
@@ -117,15 +117,11 @@ class Data {
         moonset: json["moonset"],
         vedicSunrise: json["vedic_sunrise"],
         vedicSunset: json["vedic_sunset"],
-        tithi: json["tithi"] == null ? null : Tithi.fromJson(json["tithi"]),
-        nakshatra: json["nakshatra"] == null
-            ? null
-            : Nakshatra.fromJson(json["nakshatra"]),
-        yog: json["yog"] == null ? null : Yog.fromJson(json["yog"]),
-        karan: json["karan"] == null ? null : Karan.fromJson(json["karan"]),
-        hinduMaah: json["hindu_maah"] == null
-            ? null
-            : HinduMaah.fromJson(json["hindu_maah"]),
+        tithi: Tithi.fromJson(json["tithi"]),
+        nakshatra: Nakshatra.fromJson(json["nakshatra"]),
+        yog: Yog.fromJson(json["yog"]),
+        karan: Karan.fromJson(json["karan"]),
+        hinduMaah: HinduMaah.fromJson(json["hindu_maah"]),
         paksha: json["paksha"],
         ritu: json["ritu"],
         sunSign: json["sun_sign"],
@@ -164,11 +160,11 @@ class Data {
         "moonset": moonset,
         "vedic_sunrise": vedicSunrise,
         "vedic_sunset": vedicSunset,
-        "tithi": tithi?.toJson(),
-        "nakshatra": nakshatra?.toJson(),
-        "yog": yog?.toJson(),
-        "karan": karan?.toJson(),
-        "hindu_maah": hinduMaah?.toJson(),
+        "tithi": tithi.toJson(),
+        "nakshatra": nakshatra.toJson(),
+        "yog": yog.toJson(),
+        "karan": karan.toJson(),
+        "hindu_maah": hinduMaah.toJson(),
         "paksha": paksha,
         "ritu": ritu,
         "sun_sign": sunSign,
@@ -244,19 +240,17 @@ class HinduMaah {
 
 class Karan {
   Karan({
-    this.details,
+    required this.details,
     this.endTime,
     this.endTimeMs,
   });
 
-  KaranDetails? details;
+  KaranDetails details;
   EndTime? endTime;
   int? endTimeMs;
 
   factory Karan.fromJson(Map<String, dynamic> json) => Karan(
-        details: json["details"] == null
-            ? null
-            : KaranDetails.fromJson(json["details"]),
+        details: KaranDetails.fromJson(json["details"]),
         endTime: json["end_time"] == null
             ? null
             : EndTime.fromJson(json["end_time"]),
@@ -264,7 +258,7 @@ class Karan {
       );
 
   Map<String, dynamic> toJson() => {
-        "details": details?.toJson(),
+        "details": details.toJson(),
         "end_time": endTime?.toJson(),
         "end_time_ms": endTimeMs,
       };
@@ -344,25 +338,23 @@ class NakShool {
 
 class Nakshatra {
   Nakshatra({
-    this.details,
+    required this.details,
     this.endTime,
     this.endTimeMs,
   });
 
-  NakshatraDetails? details;
+  NakshatraDetails details;
   EndTime? endTime;
   int? endTimeMs;
 
   factory Nakshatra.fromJson(Map<String, dynamic> json) => Nakshatra(
-        details: json["details"] == null
-            ? null
-            : NakshatraDetails.fromJson(json["details"]),
+        details: NakshatraDetails.fromJson(json["details"]),
         endTime: EndTime.fromJson(json["end_time"]),
         endTimeMs: json["end_time_ms"],
       );
 
   Map<String, dynamic> toJson() => {
-        "details": details?.toJson(),
+        "details": details.toJson(),
         "end_time": endTime?.toJson(),
         "end_time_ms": endTimeMs,
       };
@@ -407,19 +399,17 @@ class NakshatraDetails {
 
 class Tithi {
   Tithi({
-    this.details,
+    required this.details,
     this.endTime,
     this.endTimeMs,
   });
 
-  TithiDetails? details;
+  TithiDetails details;
   EndTime? endTime;
   int? endTimeMs;
 
   factory Tithi.fromJson(Map<String, dynamic> json) => Tithi(
-        details: json["details"] == null
-            ? null
-            : TithiDetails.fromJson(json["details"]),
+        details: TithiDetails.fromJson(json["details"]),
         endTime: json["end_time"] == null
             ? null
             : EndTime.fromJson(json["end_time"]),
@@ -427,7 +417,7 @@ class Tithi {
       );
 
   Map<String, dynamic> toJson() => {
-        "details": details?.toJson(),
+        "details": details.toJson(),
         "end_time": endTime?.toJson(),
         "end_time_ms": endTimeMs,
       };
@@ -467,19 +457,17 @@ class TithiDetails {
 
 class Yog {
   Yog({
-    this.details,
+    required this.details,
     this.endTime,
     this.endTimeMs,
   });
 
-  YogDetails? details;
+  YogDetails details;
   EndTime? endTime;
   int? endTimeMs;
 
   factory Yog.fromJson(Map<String, dynamic> json) => Yog(
-        details: json["details"] == null
-            ? null
-            : YogDetails.fromJson(json["details"]),
+        details: YogDetails.fromJson(json["details"]),
         endTime: json["end_time"] == null
             ? null
             : EndTime.fromJson(json["end_time"]),
@@ -487,7 +475,7 @@ class Yog {
       );
 
   Map<String, dynamic> toJson() => {
-        "details": details?.toJson(),
+        "details": details.toJson(),
         "end_time": endTime?.toJson(),
         "end_time_ms": endTimeMs,
       };

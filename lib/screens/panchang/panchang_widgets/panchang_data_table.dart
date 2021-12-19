@@ -40,6 +40,7 @@ class PanchangDataTable extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.grey.shade700,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ).py4(),
             ],
           ),

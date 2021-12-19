@@ -55,7 +55,9 @@ class _PanchangScreenState extends State<PanchangScreen> {
                             children: [
                               Lunar(lunarData: lunarData),
                               const Divider(color: Colors.grey),
-                              PanchangList(panchang: panchang),
+                              panchang.data != null
+                                  ? PanchangList(panchang: panchang.data!)
+                                  : Container(),
                             ],
                           );
                         },
@@ -68,44 +70,6 @@ class _PanchangScreenState extends State<PanchangScreen> {
           },
         ).p16(),
       ),
-    );
-  }
-}
-
-class PanchangList extends StatelessWidget {
-  final Panchang panchang;
-  const PanchangList({
-    Key? key,
-    required this.panchang,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 1,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Tithi",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1
-                  ?.copyWith(fontWeight: FontWeight.bold),
-            ).py8(),
-            const PanchangDataTable(
-              data: [
-                {"Tithi Number": "13"},
-                {"Tithi Name": "13"},
-                {"Special": "13"},
-                {"Summary": "bye"},
-              ],
-            )
-          ],
-        );
-      },
     );
   }
 }
