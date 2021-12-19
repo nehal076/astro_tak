@@ -15,18 +15,39 @@ class LunarData {
 class Lunar extends StatelessWidget {
   const Lunar({
     Key? key,
-    required this.lunarData,
+    required this.panchang,
   }) : super(key: key);
 
-  final List<LunarData> lunarData;
+  final Data panchang;
 
   @override
   Widget build(BuildContext context) {
+    List<LunarData> lunarData = [
+      LunarData(
+        title: "Sunrise",
+        icon: CupertinoIcons.sunrise,
+        time: panchang.sunrise!,
+      ),
+      LunarData(
+        title: "Sunset",
+        icon: CupertinoIcons.sunset,
+        time: panchang.sunset!,
+      ),
+      LunarData(
+          title: "Moonrise",
+          icon: CupertinoIcons.moon,
+          time: panchang.moonrise!),
+      LunarData(
+        title: "Moonset",
+        icon: CupertinoIcons.moon_zzz,
+        time: panchang.moonset!,
+      ),
+    ];
     return SizedBox(
       height: 45,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: lunarData.length,
+        itemCount: 4,
         itemBuilder: (context, index) {
           return Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,

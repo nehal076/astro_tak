@@ -25,14 +25,6 @@ class _PanchangScreenState extends State<PanchangScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<LunarData> lunarData = [
-      LunarData(
-          title: "Sunrise", icon: CupertinoIcons.sunrise, time: "6:00 AM"),
-      LunarData(title: "Sunset", icon: CupertinoIcons.sunset, time: "6:00 AM"),
-      LunarData(title: "Moonrise", icon: CupertinoIcons.moon, time: "6:00 AM"),
-      LunarData(
-          title: "Moonset", icon: CupertinoIcons.moon_zzz, time: "6:00 AM"),
-    ];
     return MyScaffold(
       child: SingleChildScrollView(
         child: BlocBuilder<PanchangCubit, PanchangState>(
@@ -51,15 +43,15 @@ class _PanchangScreenState extends State<PanchangScreen> {
                     ? Builder(
                         builder: (context) {
                           Panchang panchang = state.panchang;
-                          return Column(
-                            children: [
-                              Lunar(lunarData: lunarData),
-                              const Divider(color: Colors.grey),
-                              panchang.data != null
-                                  ? PanchangList(panchang: panchang.data!)
-                                  : Container(),
-                            ],
-                          );
+                          return panchang.data != null
+                              ? Column(
+                                  children: [
+                                    Lunar(panchang: panchang.data!),
+                                    const Divider(color: Colors.grey),
+                                    PanchangList(panchang: panchang.data!)
+                                  ],
+                                )
+                              : Container();
                         },
                       )
                     : const Center(
