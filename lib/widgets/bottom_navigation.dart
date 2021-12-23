@@ -27,6 +27,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
         setState(() {
           this.index = index;
         });
+        // _navigateToScreens(index);
       },
       currentIndex: index,
       items: const [
